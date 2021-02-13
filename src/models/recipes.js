@@ -38,6 +38,8 @@ const recipeSchema = new mongoose.Schema({
         ref: 'SubRecipes'
     }],
     timestamp: true
-})
+},{
+    timestamp: true
+} )
 
 module.exports = mongoose.model('MainRecipes', recipeSchema)
