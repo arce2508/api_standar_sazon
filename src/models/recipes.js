@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const recipeSchema = new mongoose.Schema({
-    recipeName: {
+    Name: {
         type: String,
         required: true,
         trim: true
@@ -37,7 +37,9 @@ const recipeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'SubRecipes'
     }],
+   
+},{
     timestamp: true
 })
 
-module.exports = mongoose.model('MainRecipes', recipeSchema)
+module.exports = mongoose.model('Recipes', recipeSchema)
