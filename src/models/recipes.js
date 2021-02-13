@@ -78,7 +78,7 @@ const recipeSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['starters', 'soups', 'main courses', 'desserts', 'sauces', 'drinks'],
+        enum: ['starters', 'soups', 'main-courses', 'desserts', 'sauces', 'drinks'],
         required: true
     },
     user: {
