@@ -1,33 +1,62 @@
-const mongoose = require("mongoose");
+const {Schema} = require("mongoose");
+const ingredientSchema = require ('./ingredients')
 
-const SubRecipeSchema = Schema(
+const timePerformanceSchema = new Schema ({
+  production: {
+    type: Number,
+  },
+  performance:{
+    type: Number,
+  },
+  portionSize: {
+    type: Number,
+    required: true},
+
+cookingTime: {
+  type: Number,
+  required: true
+},
+})
+
+const SubRecipeSchema = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-    },
     name: {
       type: String,
       trim: true,
       required: true,
     },
-    classification: {
+    category: {
       type: String,
-      enum: ["sauce", "soup", "dessert", "main course", "drinks", "tickets"],
-      trim: true,
-    },
-    fecha: {
-      type: String,
-      required: true,
-    },
+      enum: ['starters', 'soups', 'main-courses', 'desserts', 'sauces', 'drinks'],
+      required: true
+  },
     image: {
       type: String,
       trim: true,
     },
+    ingredients: [ ingredientSchema],
+
+    technique: [{
+      type: String,
+      required: true,
+      trim: true }],
+      
+    productionWardrobe: [{
+      type: String,
+      required: true,
+      trim: true }],
+
+      totalAmount: {
+        type: Number,
+        required: true
+    },
+    unitCost:{
+      type:Number,
+    }
   },
   {
     timestamp: true,
   }
 );
 
-module.exports = model("SubRecipe", SubRecipeSchema);
+module.exports = model("SubRecipes", SubRecipeSchema);
