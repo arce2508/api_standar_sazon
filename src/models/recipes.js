@@ -35,9 +35,9 @@ const recipeSchema = new mongoose.Schema({
     }],
     SubRecipes: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'SubRecipe'
+        ref: 'SubRecipes'
     }],
     timestamp: true
 })
 
-module.exports = mongoose.model('MainRecipe', recipeSchema)
+module.exports = mongoose.model('MainRecipes', recipeSchema)
