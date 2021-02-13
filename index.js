@@ -1,18 +1,19 @@
-const mongoose = require("mongoose");
-const url =
-  "mongodb+srv://standarsazon:SazoN@2021@cluster0.6uuni.mongodb.net/standarsazon";
+const db = require('./src/lib/db')
+require("dotenv").config();
+const server = require ('./src/server')
 
-mongoose
-  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log("ya estamos conectados");
-  })
-  .catch((error) => console.error("ERROR:", error));
+async function main ( ) { 
+  await db.connect ()
+  console.log ('Conexión exitosa db')
+  const port = process.env.PORT || '8080'
+  server.listen(port, () => {
+    console.log("Server is listening");
+    });
+}
+main () 
+.then (()=> {
+  console.log ('Todo chido')
+} )
+.catch ((error) => console.error(error))
 
-//require("dotenv").config();
 
-//const server = require("./src/server");
-
-//server.listen("8080", () => {
-//console.log("Server is listening");
-//});
