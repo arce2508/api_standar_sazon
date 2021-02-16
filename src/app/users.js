@@ -1,11 +1,12 @@
-const Product = require('../models/product')
+
+const Users = require('../models/users')
 
 function getAll () {
-    Product.find({})
+    Users.find({})
 }
 
 function getById () {
-    Product.getById({})
+    Users.getById({})
 }
 
 module.exports = {
