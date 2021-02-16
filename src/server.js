@@ -1,16 +1,18 @@
+const db = require('./src/lib/db')
+require("dotenv").config();
+const server = require ('./src/server')
 
-const express = require('express')
-const userRouter = require('./routes/users')
+async function main ( ) { 
+  await db.connect ()
+  console.log ('Conexión exitosa db')
+  const port = process.env.PORT || '8080'
+  server.listen(port, () => {
+    console.log("Server is listening");
+    });
+}
+main () 
+.then (()=> {
+  console.log ('Todo chido')
+} )
+.catch ((error) => console.error(error))
 
-const server = express()
-
-server.use('/users', userRouter)
-
-server.get('/', (request, response) => {
-    response.json({
-        success: true,
-        message : 'Standar&SazonApi'
-    })
-})
-
-module.exports = server
