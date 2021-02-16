@@ -1,10 +1,14 @@
 
 const express = require('express')
-const userRouter = require('./routes/users')
-
 const server = express()
+const userRouter = require('./routes/users')
+const subRecipeRouter= require ('./routes/subRecipe-router')
+const bodyParser = require ('body-parser') 
 
+
+server.use(bodyParser.json())
 server.use('/users', userRouter)
+server.use(subRecipeRouter)
 
 server.get('/', (request, response) => {
     response.json({
@@ -12,5 +16,6 @@ server.get('/', (request, response) => {
         message : 'Standar&SazonApi'
     })
 })
+
 
 module.exports = server

@@ -1,5 +1,5 @@
 
-const Users = require('../models/users')
+const Users = require('../../models/users')
 
 function getAll () {
     Users.find({})
