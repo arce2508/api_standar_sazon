@@ -3,6 +3,8 @@ const express = require('express')
 const userRouter = require('./routes/users')
 
 const server = express()
+server.use(express.json())
+
 
 server.use('/users', userRouter)
 

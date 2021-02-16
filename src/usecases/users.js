@@ -1,12 +1,13 @@
 
-const Users = require('../models/users')
+const User = require('../models/users')
 
 function getAll () {
-    Users.find({})
-}
+    return User.find()    
+    }
 
-function getById () {
-    Users.getById({})
+
+function getById (id) {
+    return User.findById(id)
 }
 
 module.exports = {
