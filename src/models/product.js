@@ -12,7 +12,7 @@ const ProductSchema = Schema({
     },
     category: {
         type: String,
-        enum: ['groceries', 'soups', 'meats'], // teminar de agregar categorias
+        enum: ['groceries', 'soups', 'meats', 'dissert', 'drinks', 'salads', 'pasta', 'appetizers'], // categorias
         required: true
     },
     measureByBuy: {
