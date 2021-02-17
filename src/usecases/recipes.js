@@ -4,20 +4,26 @@ function getAll () {
     return Recipes.find({})
 }
   
-function getById (id) {
-return Recipes.findById(id)
+async function getById (id) {
+    let recipeExit = await Recipes.findById(id)
+    if( recipeExit === null) throw new Error('No existe la receta')
+    return Recipes.findById(id)
 }
 
 function create ( recipeObject ) {
     return Recipes.create( recipeObject )
 }
 
-function deleteById (id) {
+async function deleteById (id) {
+    let recipeExit = await Recipes.findById(id)
+    if( recipeExit === null) throw new Error('No existe la receta')
     return Recipes.findByIdAndDelete(id)
 }
   
-function updateById (id, name, category, user, presentation, productionWardrobe, technique, ingredients, SubRecipes) {
-    return Recipes.findByIdAndUpdate(id, { name, category, user, presentation, production, productionWardrobe, technique, ingredients, SubRecipes })
+async function updateById ( id, recipeObject ) {
+    let recipeExit = await Recipes.findById(id)
+    if( recipeExit === null) throw new Error('No existe la receta')
+    return Recipes.findByIdAndUpdate(id, recipeObject, {new: true})
 }
 
 module.exports = {
