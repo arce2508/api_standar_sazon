@@ -1,5 +1,6 @@
 
 const User = require('../models/users')
+const bcrypt = require ('bcrypt')
 
 function getAll () {
     return User.find()    
@@ -12,10 +13,11 @@ function getAll () {
 }
 
 async function create ( userObjectData) {
-    const {email} = userObjectData
+    const {email, password} = userObjectData
     const verifyUser = await User.findOne({email})
     if (verifyUser) throw new Error(' Ya existe un usuario con este correo ')
-    return User.create( userObjectData) 
+    const passwordEncripted = await bcrypt.hash(password, 10)
+    return User.create({...userObjectData, password:passwordEncripted}) 
 }
 
 async function deleteById (id) {
