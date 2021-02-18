@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
@@ -36,7 +35,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'STUDENT',
         required: true,
-        //enum: validRoles
     }
 })
 

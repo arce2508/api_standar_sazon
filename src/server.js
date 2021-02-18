@@ -1,11 +1,16 @@
 
 const express = require('express')
 const userRouter = require('./routes/users')
+const recipesRouter = require('./routes/recipes')
 
 const server = express()
 server.use(express.json())
 
 
+server.use(express.json())
+
+
+server.use('/recipes', recipesRouter)
 server.use('/users', userRouter)
 
 server.get('/', (request, response) => {

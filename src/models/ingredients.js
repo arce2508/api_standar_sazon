@@ -3,7 +3,7 @@ const {Schema} = require('mongoose')
 
 const ingredientSchema = new Schema({
     product: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Products'
     },
     grossWeight: {

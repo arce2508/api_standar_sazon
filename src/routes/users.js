@@ -1,5 +1,6 @@
 
 const express = require('express')
+const { response } = require('../server')
 const users = require('../usecases/users')
 
 const router = express.Router()
@@ -23,12 +24,22 @@ router.get('/', async ( request, response ) => {
 })
 
 router.get('/:id', async ( request, response ) => {
-    const usersById = await users.getById(request.params.id)
-    
-    response.json({
-        success : true,
-        data: usersById
-        })
+
+    try {
+        const usersById = await users.getById(request.params.id)
+        response.json({
+            success : true,
+            data: usersById
+            })
+
+        } catch (error) {
+            response.status(400).json({
+                success : false,
+                data: {
+                    message: error.message
+                }
+            })   
+        }
     })
 
 
@@ -48,5 +59,47 @@ router.post('/', async (request, response) => {
         })
     }       
 }) 
+
+router.delete('/:id', async (request,response) => {
+    try {
+        const deleteUser = await users.deleteById (request.params.id)
+
+        response.json({
+            success:true,
+            data: deleteUser
+        })
+    }catch (error) {
+        response.json({
+            success:false,
+            data: {message: error.message}
+        })
+    }       
+}) 
+
+
+router.patch('/:id', async (request,response) => {
+    try {
+        const id = request.params.id
+        const { name,lastName,email,password,location,membership } = request.body
+
+        const updateUser = await users.updateById( id,name,lastName,email,password,location,membership)
+
+        response.json({
+            success : true,
+            data: updateUser
+            })
+
+        } catch (error) {
+            response.status(400).json({
+                success : false,
+                data: {
+                    message: error.message
+                }
+            })   
+        }
+    })
+
+
+
 
 module.exports = router 
