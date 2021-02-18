@@ -1,28 +1,35 @@
-const Product = require('../models/product')
+const Product = require("../models/product");
 
-function getAll () {
-    return Product.find({})
-}
-  
-function getById (id) {
-return Product.findById(id)
+function getAll() {
+  return Product.find({});
 }
 
-function create ( recipeObject ) {
-    return Product.create( recipeObject )
+async function getById(id) {
+  let productExit = await Product.findById(id);
+  if (productExit === null) throw new Error(" No existe el producto. ");
+  return Product.findById(id);
 }
 
-function deleteById (id) {
-    return Product.findByIdAndDelete(id)
+function create(productObject) {
+  return Product.create(productObject);
 }
-  
-function updateById (id, name, priceUnit, category, measureByBuy, description, image) {
-    return Recipes.findByIdAndUpdate(id, {name, priceUnit, category, measureByBuy, description, image}
+
+async function deleteById(id) {
+  let productExit = await Product.findById(id);
+  if (productExit === null) throw new Error(" No existe el producto. ");
+  return Product.findByIdAndDelete(id);
+}
+
+async function updateById(id, productObject) {
+  let productExit = await Product.findById(id);
+  if (productExit === null) throw new Error(" No existe el producto. ");
+  return Product.findByIdAndUpdate(id, productObject, { new: true });
+}
 
 module.exports = {
-    getAll,
-    getById,
-    create,
-    deleteById,
-    updateById
-}
+  getAll,
+  getById,
+  create,
+  deleteById,
+  updateById,
+};
