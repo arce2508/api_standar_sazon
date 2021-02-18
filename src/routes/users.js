@@ -80,9 +80,8 @@ router.delete('/:id', async (request,response) => {
 router.patch('/:id', async (request,response) => {
     try {
         const id = request.params.id
-        const { name,lastName,email,password,location,membership } = request.body
 
-        const updateUser = await users.updateById( id,name,lastName,email,password,location,membership)
+        const updateUser = await users.updateById( id, request.body )
 
         response.json({
             success : true,

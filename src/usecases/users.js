@@ -5,23 +5,31 @@ function getAll () {
     return User.find()    
     }
 
-function getById (id) {
+ async function getById (id) {
+    const user = await User.findById(id)
+    if (!user) throw new Error (' No existe el usuario ') 
     return User.findById(id)
 }
 
-function create ( name,lastName, email, password, location, membership) {
-    return User.create( name,lastName, email, password, location, membership) 
+async function create ( userObjectData) {
+    const {email} = userObjectData
+    const verifyUser = await User.findOne({email})
+    if (verifyUser) throw new Error(' Ya existe un usuario con este correo ')
+    return User.create( userObjectData) 
 }
 
-function deleteById (id) {
+async function deleteById (id) {
+    const user = await User.findByIdAndDelete(id)
+    if (!user) throw new Error (' No existe el usuario ') 
     return User.findByIdAndDelete(id)
 }
 
-function updateById (id,name,lastName, email, password, location, membership ) {
-    return User.findByIdAndUpdate (id, {id,name,lastName, email, password, location, membership} ) 
+
+async function updateById ( id, newDataUser ) {
+    const user = await User.findByIdAndUpdate(id)
+    if (!user) throw new Error (' No existe el usuario ') 
+    return User.findByIdAndUpdate (id, newDataUser, {new: true} ) 
 }
-
-
 
 module.exports = {
     getAll,
