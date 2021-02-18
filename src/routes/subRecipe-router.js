@@ -6,5 +6,7 @@ const router = express.Router ()
 router.post ('/subRecipe', controller.createSubRecipe);
 router.patch ('/subRecipe/:id',controller.updateSubRecipeController);
 router.get ('/subRecipe', controller. searchSubRecipeController);
+router.delete ('/subRecipe/:id', controller.deleteSubRecipeController);
+
 
 module.exports = router; 

@@ -54,9 +54,45 @@ const updateSubRecipeController = (req,res) => {
   })
 }
 
+const deleteSubRecipeController = (req,res) => {
+  actions 
+  .deleteSubRecipe (req.params.id, req.body) 
+  .then ((subRecipes) => {
+    res.json (subRecipes)
+  })
+  .catch ((error) => {
+    const status = 400
+    const response ={
+      message: error.message,
+      status
+    }
+    console.error (error)
+    res.status(status).json (response)
+  })
+}
+
+const getByIdSubRecipeController = (req,res) => {
+  actions 
+  .getByIdSubRecipe (req.params.id) 
+  .then ((subRecipes) => {
+    res.json (subRecipes)
+  })
+  .catch ((error) => {
+    const status = 400
+    const response ={
+      message: error.message,
+      status
+    }
+    console.error (error)
+    res.status(status).json (response)
+  })
+}
+
 module.exports = {
  createSubRecipe,
  searchSubRecipeController,
  updateSubRecipeController,
+ deleteSubRecipeController,
+ getByIdSubRecipeController,
 
 }
