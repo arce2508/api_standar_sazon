@@ -1,7 +1,6 @@
 const actions = require('../../src/app')
 
 const createSubRecipe = (req,res) => {
-  console.log(req.body)
   actions
   .createSubRecipe (req.body)
   .then((subRecipe)  => {
@@ -37,7 +36,27 @@ const searchSubRecipeController = (req,res) => {
   })
 }
 
+const updateSubRecipeController = (req,res) => {
+  actions 
+  .updateSubRecipe (req.params.id, req.body) 
+  .then ((subRecipes) => {
+    res.json (subRecipes)
+  })
+  .catch ((error) => {
+    const status = 400
+    const response ={
+      message: error.message,
+      status
+    }
+
+    console.error (error)
+    res.status(status).json (response)
+  })
+}
+
 module.exports = {
  createSubRecipe,
  searchSubRecipeController,
+ updateSubRecipeController,
+
 }
