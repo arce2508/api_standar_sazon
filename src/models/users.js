@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema({
     },
     location: {
         type: String,
-        minlength: 3,
         maxlength: 50,
         required: true
     },
@@ -37,6 +36,7 @@ const userSchema = new mongoose.Schema({
             'basic',
             'premium'
         ],
+        default: 'basic',
         required: true,
     }
 })
