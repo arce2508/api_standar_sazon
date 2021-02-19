@@ -1,6 +1,5 @@
 
 const express = require('express')
-const { response } = require('../server')
 const users = require('../usecases/users')
 
 const router = express.Router()
