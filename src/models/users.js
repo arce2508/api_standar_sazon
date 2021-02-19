@@ -1,10 +1,9 @@
-
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        minlength: 5,
+        minlength: 2,
         maxlength: 50,
         trim: true,
         required: true
@@ -36,7 +35,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'STUDENT',
         required: true,
-        //enum: validRoles
     }
 })
 
