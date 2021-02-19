@@ -5,6 +5,8 @@ const recipesRouter = require('./routes/recipes')
 const productRouter = require('./routes/product')
 
 const server = express()
+server.use(express.json())
+
 
 server.use(express.json())
 
