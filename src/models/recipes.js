@@ -45,7 +45,7 @@ const directIndirectCostsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    percentProductionByPortion: {
+    spendProductionByPortion: {
         type: Number,
         required: true
     },

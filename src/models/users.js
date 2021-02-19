@@ -27,13 +27,16 @@ const userSchema = new mongoose.Schema({
     },
     location: {
         type: String,
-        minlength: 5,
+        minlength: 3,
         maxlength: 50,
         required: true
     },
     membership: {
         type: String,
-        default: 'STUDENT',
+        enum: [
+            'basic',
+            'premium'
+        ],
         required: true,
     }
 })
