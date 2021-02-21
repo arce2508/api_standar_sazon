@@ -1,4 +1,4 @@
-const Recipes = require('../models/recipes')
+const Recipes = require('../models/sRecipe')
 
 function getAll () {
     return Recipes.find({})
@@ -33,4 +33,3 @@ module.exports = {
     deleteById,
     updateById
 }
-
