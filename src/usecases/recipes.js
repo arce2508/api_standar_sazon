@@ -1,7 +1,14 @@
 const Recipes = require('../models/recipes')
+const User = require('../models/users')
 
-function getAll () {
-    return Recipes.find({})
+
+async function getByUser (idUser) {
+    if (idUser) {
+        return Recipes.find({})
+    }
+    const userExit = await User.findById(id)
+    if( userExit === null) throw new Error('No existe el user')
+    return Recipes.find({ user: idUser})
 }
   
 async function getById (id) {
@@ -26,11 +33,13 @@ async function updateById ( id, recipeObject ) {
     return Recipes.findByIdAndUpdate(id, recipeObject, {new: true})
 }
 
+
+
 module.exports = {
-    getAll,
     getById,
     create,
     deleteById,
-    updateById
+    updateById,
+    getByUser
 }
 
