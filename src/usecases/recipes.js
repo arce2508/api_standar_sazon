@@ -3,7 +3,7 @@ const User = require('../models/users')
 
 
 async function getByUser (idUser) {
-    if (idUser) {
+    if (!idUser) {
         return Recipes.find({})
     }
     const userRecipe = await User.findById(idUser)
