@@ -1,5 +1,5 @@
 const express = require("express");
-const subRecipe = require("../usecases/recipe");
+const subRecipe = require("../usecases/SubRecipes");
 
 const router = express.Router();
 
