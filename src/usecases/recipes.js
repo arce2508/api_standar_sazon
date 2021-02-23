@@ -6,9 +6,9 @@ async function getByUser (idUser) {
     if (idUser) {
         return Recipes.find({})
     }
-    const userExit = await User.findById(id)
-    if( userExit === null) throw new Error('No existe el user')
-    return Recipes.find({ user: idUser})
+    const userRecipe = await User.findById(idUser)
+    if( userRecipe === null) throw new Error('No existe el user')
+    return Recipes.find({ user:idUser})
 }
   
 async function getById (id) {

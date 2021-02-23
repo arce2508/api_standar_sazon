@@ -5,28 +5,11 @@ const router = express.Router();
 
 
 
- router.get("/", async (request, response) => {
-  try {
-    const allRecipes = await recipes.getAll();
-
-    response.json({
-      success: true,
-      data: allRecipes,
-    });
-  } catch (error) {
-    response.status(400); 
-    response.json({
-      success: false,
-      data: { message: error.message },
-    });
-  }
-});
-
 
 router.get('/', async (request,response ) => {
   try {
     const {user} = request.query
-    const recipesByUser = await recipes.getAll(user)
+    const recipesByUser = await recipes.getByUser(user)
 
     response.json({
       success: true,
