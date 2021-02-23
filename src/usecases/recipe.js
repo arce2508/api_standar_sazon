@@ -1,4 +1,4 @@
-const Recipes = require('../models/Recipe')
+const Recipes = require('../models/recipes')
 
 function getAll () {
     return Recipes.find({})
