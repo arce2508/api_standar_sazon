@@ -11,7 +11,7 @@ router.post('/login', async (request, response) => {
   const token = await auth.login(email, password)
   response.json({
       success:true,
-      message:'User logge in',
+      message:'User logged in',
       data:{
         token: token
       }
