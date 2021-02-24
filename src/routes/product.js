@@ -1,7 +1,9 @@
 const express = require("express");
 const products = require("../usecases/product");
+const jwt = require('express-jwt')
 
 const router = express.Router();
+router.use(jwt({ secret: process.env.JWT_KEY, algorithms: ['HS256'] }))
 
 router.get("/", async (request, response) => {
   try {

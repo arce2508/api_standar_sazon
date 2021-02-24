@@ -1,8 +1,29 @@
 
 const express = require('express')
 const users = require('../usecases/users')
+const jwt = require('express-jwt')
 
 const router = express.Router()
+
+router.post('/', async (request, response) => {
+    try{
+        const userCreated = await users.create(request.body)
+        
+        response.json({
+            success: true,
+            data: userCreated
+        })
+
+    } catch (error) {
+        response.json({
+            success:false,
+            data: {message: error.message}
+        })
+    }       
+}) 
+
+router.use(jwt({ secret: process.env.JWT_KEY, algorithms: ['HS256'] }))
+
 
 router.get('/', async ( request, response ) => {
     try {
@@ -42,22 +63,7 @@ router.get('/:id', async ( request, response ) => {
     })
 
 
-router.post('/', async (request, response) => {
-    try{
-        const userCreated = await users.create(request.body)
-        
-        response.json({
-            success: true,
-            data: userCreated
-        })
 
-    } catch (error) {
-        response.json({
-            success:false,
-            data: {message: error.message}
-        })
-    }       
-}) 
 
 router.delete('/:id', async (request,response) => {
     try {

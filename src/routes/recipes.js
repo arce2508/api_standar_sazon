@@ -1,7 +1,9 @@
 const express = require("express");
-const recipes = require("../usecases/recipes");
+const recipes = require("../usecases/recipe");
+const jwt = require('express-jwt')
 
 const router = express.Router();
+router.use(jwt({ secret: process.env.JWT_KEY, algorithms: ['HS256'] }))
 
 
 
