@@ -3,15 +3,20 @@ const recipes = require("../usecases/recipes");
 
 const router = express.Router();
 
-router.get("/", async (request, response) => {
+
+
+
+router.get('/', async (request,response ) => {
   try {
-    const allRecipes = await recipes.getAll();
+    const {user} = request.query
+    const recipesByUser = await recipes.getByUser(user)
 
     response.json({
       success: true,
-      data: allRecipes,
+      data: recipesByUser,
     });
-  } catch (error) {
+
+  }catch(error) {
     response.status(400);
     response.json({
       success: false,
@@ -19,6 +24,8 @@ router.get("/", async (request, response) => {
     });
   }
 });
+
+
 
 router.post("/", async (request, response) => {
   try {
