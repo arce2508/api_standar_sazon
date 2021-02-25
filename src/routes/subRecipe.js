@@ -1,9 +1,9 @@
 const express = require("express");
 const subRecipe = require("../usecases/SubRecipes");
-const jwt = require('express-jwt')
+const authMiddleware = require("../middlewares/auth-middleware")
 
 const router = express.Router();
-router.use(jwt({ secret: process.env.JWT_KEY, algorithms: ['HS256'] }))
+router.use(authMiddleware);
 
 
 router.get("/", async (request, response) => {
