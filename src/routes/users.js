@@ -22,9 +22,8 @@ router.post('/', async (request, response) => {
     }       
 }) 
 
+
 router.use(jwt({ secret: process.env.JWT_KEY, algorithms: ['HS256'] }))
-
-
 router.get('/', async ( request, response ) => {
     try {
         const allUsers = await users.getAll()

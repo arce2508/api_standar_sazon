@@ -8,7 +8,7 @@ router.use(jwt({ secret: process.env.JWT_KEY, algorithms: ['HS256'] }))
 
 router.get("/", async (request, response) => {
   try {
-    const allSubRecipes = await subRecipe.getAll();
+    const allSubRecipes = await subRecipe.getAll(request.body);
 
     response.json({
       success: true,
