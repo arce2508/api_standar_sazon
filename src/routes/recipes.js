@@ -1,10 +1,9 @@
 const express = require("express");
-const recipes = require("../usecases/recipes");
+const recipes = require("../usecases/recipe");
+const authMiddleware = require("../middlewares/auth-middleware")
 
 const router = express.Router();
-
-
-
+router.use(authMiddleware);
 
 router.get('/', async (request,response ) => {
   try {

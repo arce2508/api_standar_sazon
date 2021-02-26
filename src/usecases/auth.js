@@ -1,8 +1,7 @@
 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const Users = require('../models/users')
-require("dotenv").config()
+const Users = require('../usecases/users')
 
 async function login (email, password){
  
@@ -14,8 +13,7 @@ async function login (email, password){
   
   if (!isPasswordValid) throw new Error('Invalid data')
 
-  const token = jwt.sign({ id:userFound._id}, process.env.JWT_KEY) 
-  console.log()
+  const token = jwt.sign({ id:userFound._id}, process.env.JWT_KEY, { algorithm: 'HS256' })
   return token
 }
 

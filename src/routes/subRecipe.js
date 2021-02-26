@@ -1,11 +1,14 @@
 const express = require("express");
 const subRecipe = require("../usecases/SubRecipes");
+const authMiddleware = require("../middlewares/auth-middleware")
 
 const router = express.Router();
+router.use(authMiddleware);
+
 
 router.get("/", async (request, response) => {
   try {
-    const allSubRecipes = await subRecipe.getAll();
+    const allSubRecipes = await subRecipe.getAll(request.body);
 
     response.json({
       success: true,

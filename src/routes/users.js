@@ -1,9 +1,29 @@
 
 const express = require('express')
 const users = require('../usecases/users')
+const authMiddleware = require("../middlewares/auth-middleware")
 
 const router = express.Router()
 
+router.post('/', async (request, response) => {
+    try{
+        const userCreated = await users.create(request.body)
+        
+        response.json({
+            success: true,
+            data: userCreated
+        })
+
+    } catch (error) {
+        response.json({
+            success:false,
+            data: {message: error.message}
+        })
+    }       
+}) 
+
+
+router.use(authMiddleware);
 router.get('/', async ( request, response ) => {
     try {
         const allUsers = await users.getAll()
@@ -42,22 +62,7 @@ router.get('/:id', async ( request, response ) => {
     })
 
 
-router.post('/', async (request, response) => {
-    try{
-        const userCreated = await users.create(request.body)
-        
-        response.json({
-            success: true,
-            data: userCreated
-        })
 
-    } catch (error) {
-        response.json({
-            success:false,
-            data: {message: error.message}
-        })
-    }       
-}) 
 
 router.delete('/:id', async (request,response) => {
     try {
