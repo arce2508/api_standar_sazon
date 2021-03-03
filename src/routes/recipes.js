@@ -1,81 +1,78 @@
-const express = require("express");
-const recipes = require("../usecases/recipe");
-const authMiddleware = require("../middlewares/auth-middleware")
+const express = require('express')
+const recipes = require('../usecases/recipe')
+const authMiddleware = require('../middlewares/auth-middleware')
 
-const router = express.Router();
-router.use(authMiddleware);
+const router = express.Router()
+router.use(authMiddleware)
 
-router.get('/', async (request,response ) => {
+router.get('/', async (request, response) => {
   try {
-    const {user} = request.query
+    const { user } = request.query
     const recipesByUser = await recipes.getByUser(user)
 
     response.json({
       success: true,
-      data: recipesByUser,
-    });
-
-  }catch(error) {
-    response.status(400);
+      data: recipesByUser
+    })
+  } catch (error) {
+    response.status(400)
     response.json({
       success: false,
-      data: { message: error.message },
-    });
+      data: { message: error.message }
+    })
   }
-});
+})
 
-
-
-router.post("/", async (request, response) => {
+router.post('/', async (request, response) => {
   try {
-    const recipeCreated = await recipes.create(request.body);
+    const recipeCreated = await recipes.create(request.body)
 
     response.json({
       success: true,
-      data: recipeCreated,
-    });
+      data: recipeCreated
+    })
   } catch (error) {
-    response.status(400);
+    response.status(400)
     response.json({
       success: false,
-      data: { message: error.message },
-    });
+      data: { message: error.message }
+    })
   }
-});
+})
 
-router.delete("/:id", async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
-    const recipeDeleted = await recipes.deleteById(request.params.id);
+    const recipeDeleted = await recipes.deleteById(request.params.id)
 
     response.json({
       success: true,
       data: recipeDeleted
-    });
+    })
   } catch (error) {
-    response.status(400);
+    response.status(400)
     response.json({
       success: false,
-      data: { message: error.message },
-    });
+      data: { message: error.message }
+    })
   }
-});
-
-router.patch("/:id", async (request, response) => {
-    try {
-        const { params: {id}, body } = request
-        const recipeUpdated = await recipes.updateById(id, body)
-
-        response.json({
-            success: true,
-            data: recipeUpdated
-          });
-    } catch (error) {
-        response.status(400);
-        response.json({
-          success: false,
-          data: { message: error.message },
-        });
-    }
 })
 
-module.exports = router;
+router.patch('/:id', async (request, response) => {
+  try {
+    const { params: { id }, body } = request
+    const recipeUpdated = await recipes.updateById(id, body)
+
+    response.json({
+      success: true,
+      data: recipeUpdated
+    })
+  } catch (error) {
+    response.status(400)
+    response.json({
+      success: false,
+      data: { message: error.message }
+    })
+  }
+})
+
+module.exports = router
