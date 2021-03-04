@@ -1,5 +1,5 @@
 const express = require('express')
-const products = require('../usecases/product')
+const subRecipe = require('../usecases/SubRecipes')
 const authMiddleware = require('../middlewares/auth-middleware')
 
 const router = express.Router()
@@ -7,11 +7,11 @@ router.use(authMiddleware)
 
 router.get('/', async (request, response) => {
   try {
-    const allProduct = await products.getAll(request.body)
+    const allSubRecipes = await subRecipe.getAll(request.body)
 
     response.json({
       success: true,
-      data: allProduct
+      data: allSubRecipes
     })
   } catch (error) {
     response.status(400)
@@ -24,28 +24,11 @@ router.get('/', async (request, response) => {
 
 router.post('/', async (request, response) => {
   try {
-    const productCreated = await products.create(request.body)
+    const subRecipeCreated = await subRecipe.create(request.body)
 
     response.json({
       success: true,
-      data: productCreated
-    })
-  } catch (error) {
-    response.status(400)
-    response.json({
-      success: false,
-      data: { message: error.message }
-    })
-  }
-})
-
-router.get('/:id', async (request, response) => {
-  try {
-    const productGet = await products.getById(request.params.id)
-
-    response.json({
-      success: true,
-      data: productGet
+      data: subRecipeCreated
     })
   } catch (error) {
     response.status(400)
@@ -58,11 +41,11 @@ router.get('/:id', async (request, response) => {
 
 router.delete('/:id', async (request, response) => {
   try {
-    const productDeleted = await products.deleteById(request.params.id)
+    const subRecipeDeleted = await subRecipe.deleteById(request.params.id)
 
     response.json({
       success: true,
-      data: productDeleted
+      data: subRecipeDeleted
     })
   } catch (error) {
     response.status(400)
@@ -75,15 +58,12 @@ router.delete('/:id', async (request, response) => {
 
 router.patch('/:id', async (request, response) => {
   try {
-    const {
-      params: { id },
-      body
-    } = request
-    const productUpdated = await products.updateById(id, body)
+    const { params: { id }, body } = request
+    const subRecipeUpdated = await subRecipe.updateById(id, body)
 
     response.json({
       success: true,
-      data: productUpdated
+      data: subRecipeUpdated
     })
   } catch (error) {
     response.status(400)
