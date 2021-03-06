@@ -1,5 +1,5 @@
 const express = require('express')
-const subRecipe = require('../usecases/SubRecipes')
+const subRecipe = require('../usecases/subRecipes')
 const authMiddleware = require('../middlewares/auth-middleware')
 
 const router = express.Router()
