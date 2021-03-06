@@ -16,6 +16,17 @@ server.use('/users', userRouter)
 server.use('/products', productRouter)
 server.use('/auth', authRouter)
 server.use('/subRecipes', subRecipeRouter)
+server.get('/', (request, response) => {
+  response.json({
+    aplicacion: 'Api Standar & sazón',
+    developers: [
+      { name: 'Eric Trujillo' },
+      { name: 'Arce Gutierrez' },
+      { name: 'Juan Carlos Hernandez' },
+      { name: 'Shari Andrade' }
+    ]
+  })
+})
 
 const errorHandler = (err, req, res, next) => {
   if (res.headersSent) {
