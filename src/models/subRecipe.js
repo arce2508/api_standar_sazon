@@ -55,7 +55,8 @@ const SubRecipeSchema = new Schema(
     },
     unitCost: {
       type: Number
-    }
+    },
+    timePerformance: timePerformanceSchema
   },
   {
     timestamp: true
