@@ -4,6 +4,7 @@ const products = require('../usecases/product')
 
 const router = express.Router()
 // router.use(authMiddleware)//
+// router.use(authMiddleware)
 
 router.get('/', async (request, response) => {
   try {
