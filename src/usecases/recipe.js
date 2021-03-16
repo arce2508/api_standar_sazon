@@ -16,8 +16,8 @@ async function getById (id) {
   return Recipes.findById(id)
 }
 
-function create (recipeObject) {
-  return Recipes.create(recipeObject)
+function create (recipeObject, userCurrent) {
+  return Recipes.create({ ...recipeObject, user: userCurrent })
 }
 
 async function deleteById (id) {

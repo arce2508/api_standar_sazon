@@ -7,7 +7,7 @@ router.use(authMiddleware)
 
 router.get('/', async (request, response) => {
   try {
-    const { user } = request.query
+    const { id: user } = request.user
     const recipesByUser = await recipes.getByUser(user)
 
     response.json({
@@ -25,7 +25,8 @@ router.get('/', async (request, response) => {
 
 router.post('/', async (request, response) => {
   try {
-    const recipeCreated = await recipes.create(request.body)
+    const { id: userCurrent } = request.user
+    const recipeCreated = await recipes.create(request.body, userCurrent)
 
     response.json({
       success: true,
