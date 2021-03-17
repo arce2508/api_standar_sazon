@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const authMiddleware = function (req, res, next) {
   const authorizationHeader = req.headers.authorization
-
+  console.log(authorizationHeader)
   if (!authorizationHeader) {
     return next(new Error('Invalid token'))
   }
