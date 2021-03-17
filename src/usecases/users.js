@@ -2,8 +2,8 @@
 const User = require('../models/users')
 const bcrypt = require('bcrypt')
 
-function getAll () {
-  return User.find()
+function getAll (userId) {
+  return User.findById(userId)
 }
 
 async function getById (id) {
