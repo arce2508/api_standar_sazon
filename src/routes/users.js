@@ -24,7 +24,7 @@ router.post('/', async (request, response) => {
 router.use(authMiddleware)
 router.get('/', async (request, response) => {
   try {
-    const allUsers = await users.getAll()
+    const allUsers = await users.getAll(request.user.id)
     response.json({
       success: true,
       data: allUsers
