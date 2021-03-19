@@ -37,7 +37,7 @@ const SubRecipeSchema = new Schema(
     },
     ingredients: [ingredientSchema],
 
-    grossWeight: {
+    grossWeightTotal: {
       type: Number
     },
 
