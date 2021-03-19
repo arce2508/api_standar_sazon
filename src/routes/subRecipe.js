@@ -25,7 +25,7 @@ router.get('/', async (request, response) => {
 
 router.post('/', async (request, response) => {
   try {
-    const subRecipeCreated = await subRecipe.create(request.body)
+    const subRecipeCreated = await subRecipe.createSubRecipe(request.body)
 
     response.json({
       success: true,
