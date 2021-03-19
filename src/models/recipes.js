@@ -105,6 +105,10 @@ const recipeSchema = new mongoose.Schema({
   ingredients: [
     ingredientSchema
   ],
+
+  grossWeightTotal: {
+    type: Number
+  },
   SubRecipes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'SubRecipes'
