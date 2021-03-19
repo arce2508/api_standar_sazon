@@ -7,7 +7,8 @@ router.use(authMiddleware)
 
 router.get('/', async (request, response) => {
   try {
-    const allSubRecipes = await subRecipe.getAll()
+    const { id: user } = request.user
+    const allSubRecipes = await subRecipe.getByUser(user)
 
     response.json({
       success: true,

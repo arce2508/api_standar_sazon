@@ -31,6 +31,10 @@ const SubRecipeSchema = new Schema(
       enum: ['starters', 'soups', 'main-courses', 'desserts', 'sauces', 'drinks'],
       required: true
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users'
+    },
     image: {
       type: String,
       trim: true
