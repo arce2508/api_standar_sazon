@@ -1,13 +1,13 @@
 const express = require('express')
 const products = require('../usecases/product')
-const authMiddleware = require('../middlewares/auth-middleware')
+// const authMiddleware = require('../middlewares/auth-middleware')
 
 const router = express.Router()
 // router.use(authMiddleware)
 
 router.get('/', async (request, response) => {
   try {
-    const allProduct = await products.getAll(request.body)
+    const allProduct = await products.getAll()
 
     response.json({
       success: true,
