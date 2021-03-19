@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/', async (request, response) => {
   try {
-    const allProduct = await products.getAll(request.body)
+    const allProduct = await products.getAll()
 
     response.json({
       success: true,
