@@ -76,7 +76,7 @@ router.patch('/:id', async (request, response) => {
 
 router.get('/:id', async (request, response) => {
   try {
-    const getById = await subRecipe.getById(request.params.id)
+    const getById = await subRecipe.subRecipeGetById(request.params.id)
     response.json({
       success: true,
       data: getById
