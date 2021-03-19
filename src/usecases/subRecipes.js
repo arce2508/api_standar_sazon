@@ -1,6 +1,6 @@
 const SubRecipes = require('../models/subRecipe')
 
-function subRecipeGetAll () {
+function getAll () {
   return SubRecipes.find({})
 }
 
@@ -28,7 +28,7 @@ async function SubRecipeUpdateById (id, recipeObject) {
 
 module.exports = {
   createSubRecipe,
-  subRecipeGetAll,
+  getAll,
   SubRecipeDeleteById,
   SubRecipeUpdateById,
   subRecipeGetById
