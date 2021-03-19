@@ -1,7 +1,7 @@
 const SubRecipes = require('../models/subRecipe')
 
-function getByUser (userId) {
-  return SubRecipes.findById(userId)
+function getByUser (user) {
+  return SubRecipes.find({ user })
 }
 
 async function subRecipeGetById (id) {
