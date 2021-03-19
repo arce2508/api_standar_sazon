@@ -58,8 +58,7 @@ const SubRecipeSchema = new Schema(
     }],
 
     totalAmount: {
-      type: Number,
-      required: true
+      type: Number
     },
     unitCost: {
       type: Number
