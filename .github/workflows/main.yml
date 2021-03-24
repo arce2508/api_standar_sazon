@@ -1,5 +1,5 @@
 name: Upgrade and deployment
-    on: [push, pull_request]
+    on:
       push:
         branches: [test]
       pull_request:
