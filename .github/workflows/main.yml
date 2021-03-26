@@ -1,5 +1,5 @@
 name: Upgrade and deployment
-  on:
+  on: push
     push:
       branches: [test]
       jobs:
